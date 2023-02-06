@@ -1,34 +1,70 @@
-// selezioniamo tutti gli elementi slide
+const images = [
+{src: './img/01.jpg', alt: 'Immagine 1'},
+{src: './img/02.jpg', alt: 'Immagine 2'},
+{src: './img/03.jpg', alt: 'Immagine 3'},
+{src: './img/04.jpg', alt: 'Immagine 3'},
+{src: './img/05.jpg', alt: 'Immagine 3'},
+];
+
+// QUESTO CODICE VA INTEGRATO SE TOGLIAMO GLI ELEMENTI DALL'HTML PER CREARE LE SLIDE CON LE IMMAGINI DA JS
+
+// // Creiamo gli elementi slide con le immagini
+// for (let i = 0; i < images.length; i++) {
+// const imgElement = document.createElement('img');
+// imgElement.src = images[i].src;
+// imgElement.alt = images[i].alt;
+// const slide = document.createElement('div');
+// slide.classList.add('slide');
+// slide.appendChild(imgElement);
+// document.body.appendChild(slide);
+
+// console.log(i)
+// }
+
+// Selezioniamo tutti gli elementi slide e aggiungiamo animazione alla loro comparsa
 const slides = document.querySelectorAll('.slide');
 
-// indice corrente del carosello
+// Indice corrente del carosello
 let current = 0;
 
-// funzione per mostrare lo slide successivo
+// Funzione per mostrare lo slide successivo
 function nextSlide() {
-// rimuoviamo la classe active dallo slide corrente
+// Rimuoviamo la classe active dallo slide corrente
 slides[current].classList.remove('active');
-// incrementiamo l'indice corrente
+// Incrementiamo l'indice corrente
 current = (current + 1) % slides.length;
-// aggiungiamo la classe active allo slide successivo
+// Aggiungiamo animazione alla comparsa dello slide successivo
+slides[current].style.transition = "opacity 0.5s ease-in-out";
+slides[current].style.opacity = 0;
+setTimeout(function() {
+    slides[current].style.opacity = 1;
+}, 100);
+// Aggiungiamo la classe active allo slide successivo
 slides[current].classList.add('active');
 }
 
-// funzione per mostrare lo slide precedente
+// Funzione per mostrare lo slide precedente
 function prevSlide() {
-// rimuoviamo la classe active dallo slide corrente
+// Rimuoviamo la classe active dallo slide corrente
 slides[current].classList.remove('active');
-// decrementiamo l'indice corrente, se è 0 lo impostiamo come l'ultimo elemento della lista di slide
+// Decrementiamo l'indice corrente, se è 0 lo impostiamo come l'ultimo elemento della lista di slide
 current = (current - 1 + slides.length) % slides.length;
-// aggiungiamo la classe active allo slide precedente
+// Aggiungiamo animazione alla comparsa dello slide precedente
+slides[current].style.transition = "opacity 0.5s ease-in-out";
+slides[current].style.opacity = 0;
+setTimeout(function() {
+    slides[current].style.opacity = 1;
+}, 100);
+// Aggiungiamo la classe active allo slide precedente
 slides[current].classList.add('active');
 }
 
-// selezioniamo la freccia sinistra
-const arrowLeft = document.querySelector('.arrow-left');
-// selezioniamo la freccia destra
-const arrowRight = document.querySelector('.arrow-right');
+console.log(slides)
 
+// Selezioniamo la freccia sinistra
+const arrowLeft = document.querySelector('.arrow-left');
+// Selezioniamo la freccia destra
+const arrowRight = document.querySelector('.arrow-right');
 // assegniamo la funzione nextSlide all'evento click sulla freccia destra
 arrowRight.addEventListener('click', nextSlide);
 
