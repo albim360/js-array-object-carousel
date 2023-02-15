@@ -48,3 +48,17 @@ body {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
   } 
+
+  .slide__title {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 20px 0 10px;
+    text-align: center;
+  }
+  
+  .slide__description {
+    font-size: 20px;
+    margin: 10px 0 20px;
+    text-align: center;
+  }
+  
